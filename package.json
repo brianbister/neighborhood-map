@@ -1,0 +1,23 @@
+{
+  "name": "neighborhood-map",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianbister/neighborhood-map.git"
+  },
+  "author": "Brian Bister",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brianbister/neighborhood-map/issues"
+  },
+  "homepage": "https://github.com/brianbister/neighborhood-map#readme",
+  "devDependencies": {
+    "connect": "^3.4.1",
+    "serve-static": "^1.11.1"
+  }
+}

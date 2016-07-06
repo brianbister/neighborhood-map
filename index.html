@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Neighborhood Map</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+  <script src="js/app.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5sV9Y7NheTKaetdSGjOtRK41C7W__Go4&callback=init"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div id="filter" class="col-xs-4">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search by name..." data-bind="value: filter">
+          <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button" data-bind="click: filterPlaces">Filter</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id="place-list" class="col-xs-4">
+        <table class="table table-bordered place-table table-striped table-responsive">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody data-bind="foreach: places">
+            <tr>
+              <td data-bind="text: name"></td>
+              <td data-bind="text: description"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="article-list" class="col-xs-8" data-bind="if: articles">
+        <table class="table table-bordered place-table table-striped table-responsive">
+          <tbody data-bind="foreach: articles">
+            <tr>
+              <td data-bind="text: headline"></td>
+              <td data-bind="text: snippet"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div id="map"></div>
+</body>
+
+</html>
