@@ -8,52 +8,63 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/main.css">
 
-  <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="js/app.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5sV9Y7NheTKaetdSGjOtRK41C7W__Go4&callback=init"></script>
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div id="filter" class="col-xs-4">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search by name..." data-bind="value: filter">
-          <span class="input-group-btn">
-        <button class="btn btn-secondary" type="button" data-bind="click: filterPlaces">Filter</button>
+  <div data-bind="if: error">
+    <div class="alert alert-warning" data-bind="text: error"></div>
+  </div>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Places <span class="caret"></span></a>
+            <ul class="dropdown-menu" data-bind="foreach: places">
+              <li class="place-name" data-bind="text: name, click: $parent.focusPlace"></li>
+              <li role="separator" class="divider"></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" data-bind="value: filter">
+            <button type="submit" class="btn btn-default" data-bind="click: filterPlaces">Filter</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="focused-place" data-bind="if: focusedPlace">
+        <p data-bind="text: focusedPlace().description"></p>
+        <div id="article-list" data-bind="if: articles">
+          <table class="table table-bordered place-table table-striped table-responsive">
+            <tbody data-bind="foreach: articles">
+              <tr>
+                <td data-bind="text: headline"></td>
+                <td class="hidden-xs" data-bind="text: snippet"></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div id="place-list" class="col-xs-4">
-        <table class="table table-bordered place-table table-striped table-responsive">
-          <thead class="thead-inverse">
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody data-bind="foreach: places">
-            <tr>
-              <td data-bind="text: name"></td>
-              <td data-bind="text: description"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div id="article-list" class="col-xs-8" data-bind="if: articles">
-        <table class="table table-bordered place-table table-striped table-responsive">
-          <tbody data-bind="foreach: articles">
-            <tr>
-              <td data-bind="text: headline"></td>
-              <td data-bind="text: snippet"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  </nav>
   <div id="map"></div>
 </body>
 

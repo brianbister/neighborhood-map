@@ -7,18 +7,19 @@
     bottom: 0;
     left: 0;
 }
-#place-list {
+.alert {
     position: relative;
     z-index: 99;
 }
-#article-list {
+.navbar {
     position: relative;
     z-index: 99;
 }
-#filter {
-    margin-top: 20px;
+.place-name {
+    text-align: center;
+    margin: 5px;
 }
-.place-table {
-    background-color: white;
-    padding: 20px;
+.focused-place {
+    position: relative;
+    z-index: 99;
 }
