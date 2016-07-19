@@ -110,3 +110,7 @@ function ViewModel() {
 function init() {
   ko.applyBindings(new ViewModel());
 }
+
+function googleError() {
+  alert("An error occurred loading Google Maps.");
+}
